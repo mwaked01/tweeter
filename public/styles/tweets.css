@@ -1,0 +1,45 @@
+article.tweets {
+  width: 100%;
+  border: solid ;
+  padding: 0 0.5em;
+}
+
+article.tweets:hover {
+  box-shadow: 5px 5px #c9d0dc;
+}
+
+#user-name{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#handle{
+  color:#c9d0dc;
+  font-weight: 600;
+}
+
+#tweet{
+  border-bottom: solid;
+}
+
+footer{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0.5em;
+  font-size: 0.5em;
+  color: #4056a1;
+}
+
+.fa-flag:hover{
+  color: gold;
+}
+
+.fa-retweet:hover{
+  color: gold;
+}
+
+.fa-heart:hover{
+  color: gold;
+}
