@@ -23,18 +23,18 @@ const data = [
     },
     "created_at": 1461113959088
   }
-]
+];
 
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-  const renderTweets = function (tweets) {
+  const renderTweets = function(tweets) {
     for (let tweet of tweets) {
       $('#tweets-container').append(createTweetElement(tweet));
     }
-  }
+  };
 
-  const createTweetElement = function (tweet) {
+  const createTweetElement = function(tweet) {
     const $tweet = $(`<article class="tweet">
   <header>
   <p><img src="${tweet['user'].avatars}">${tweet['user'].name}</p>
@@ -68,15 +68,15 @@ $(document).ready(function () {
     });
   });
 
-  const loadTweets = function (){
+  const loadTweets = function() {
     const tweetsPage = 'http://localhost:8080/tweets';
     $.ajax(tweetsPage, { method: 'GET' })
-    .then(function (tweets) {
-      console.log('Success: ', tweets);
-      renderTweets(tweets);
-    });
-  }
+      .then(function(tweets) {
+        console.log('Success: ', tweets);
+        renderTweets(tweets);
+      });
+  };
 
-loadTweets();
+  loadTweets();
 
 });
