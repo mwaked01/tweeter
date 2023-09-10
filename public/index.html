@@ -27,7 +27,7 @@
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
   <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
-  
+
 
   <!-- Awesome Font Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -57,39 +57,21 @@
   </header>
 
   <!-- Page-specific (main) content here -->
-  <main class="container">
+  <main class="container" id="tweets-container">
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
       <form action="/tweets" method="POST">
         <label for="tweet-text">What are you humming about?</label>
         <textarea name="text" id="tweet-text"></textarea>
-        <div class ="below-text">
+        <div class="below-text">
           <button type="submit">Tweet</button>
           <output name="counter" class="counter" for="tweet-text">140</output>
         </div>
       </form>
+
       <br>
       <br>
-      <article class="tweets">
-        <header>
-          <div id="user-name">
-            <p>user name </p>
-            <p id="handle"> handle</p>
-          </div>
-          <div id ="tweet">
-            <p>tweet </p>
-          </div>
-        </header>
-        <footer>
-        <div> date</div>
-        <div>
-          <i class="fa-solid fa-flag" ></i>
-          <i class="fa-solid fa-retweet"></i>
-          <i class="fa-solid fa-heart" ></i>
-        </div>  
-        </footer>
-    </article>
-    <br>
+
     </section>
   </main>
 </body>

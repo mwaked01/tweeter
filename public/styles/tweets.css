@@ -1,35 +1,41 @@
-article.tweets {
+article{
   width: 100%;
   border: solid ;
   padding: 0 0.5em;
 }
 
-article.tweets:hover {
+article:hover {
   box-shadow: 5px 5px #c9d0dc;
 }
 
-#user-name{
+header{
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  align-items: baseline;
 }
 
-#handle{
+
+/* #handle{
   color:#c9d0dc;
   font-weight: 600;
-}
+} */
 
-#tweet{
+/* .tweet{
   border-bottom: solid;
-}
+} */
 
 footer{
+  border-top: solid;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   padding: 0.5em;
   font-size: 0.5em;
-  color: #4056a1;
+}
+
+.icons{
+  color: #4056A1;
 }
 
 .fa-flag:hover{
