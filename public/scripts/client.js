@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const renderTweets = function (tweet) {
-    $('#tweets-container').append(createTweetElement(tweet));
+    $('#tweets-container').prepend(createTweetElement(tweet));
   };
 
   const escape = function (str) {
@@ -33,12 +33,15 @@ $(document).ready(function () {
   const $form = $('#tweet-form');
 
   $form.submit(function (event) {
+
     let $tweetText = $("#tweet-text").val();
+    
     //stop default submit from refreshing the page
     event.preventDefault();
+
     const $errorMessage = $("#error-message");
     const $errorText = $(".error-text");
-    // $errorMessage.hide();
+
     if ($tweetText === "" || $tweetText === null) {
       $errorText.text("Invalid Entry!"); // Set error message text
       $errorMessage.slideDown();
@@ -46,6 +49,7 @@ $(document).ready(function () {
       $errorText.text("Tweet Exceeds limit of 140 characters.");
       $errorMessage.slideDown();
     } else {
+      
       $errorMessage.slideUp();
       $.ajax({
         url: "/tweets",
@@ -53,9 +57,13 @@ $(document).ready(function () {
         data: $form.serialize(),
       })
         .then(function (newTweet) {
-          console.log(JSON.stringify(newTweet));
+          $("#tweets-container").empty();
+          loadTweets();
+          // console.log(JSON.stringify(newTweet));
           // renderTweets(newTweet);
+          
         })
+        
     }
   });
 
