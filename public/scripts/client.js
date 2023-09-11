@@ -1,17 +1,22 @@
 $(document).ready(function () {
-  const renderTweets = function (tweets) {
-    for (let tweet of tweets) {
-      $('#tweets-container').append(createTweetElement(tweet));
-    }
+  const renderTweets = function (tweet) {
+    $('#tweets-container').append(createTweetElement(tweet));
+  };
+
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
   };
 
   const createTweetElement = function (tweet) {
+    const safeHTML = `<p>${escape(tweet['content'].text)}</p>`;
     const $tweet = $(`<article class="tweet">
   <header>
   <p><img src="${tweet['user'].avatars}">${tweet['user'].name}</p>
           <p style ="color:#c9d0dc; font-weight:600" >${tweet['user'].handle}</p>
         </header>
-        ${tweet['content'].text}
+        ${safeHTML}
         <footer>
         ${timeago.format(tweet['created_at'])}
           <div class="icons">
@@ -26,8 +31,8 @@ $(document).ready(function () {
   };
 
   const $form = $('#tweet-form');
-  
-  $form.submit((event) => {
+
+  $form.submit(function (event) {
     let $tweetText = $("#tweet-text").val();
     //stop default submit from refreshing the page
     event.preventDefault();
@@ -40,8 +45,11 @@ $(document).ready(function () {
         url: "/tweets",
         method: "POST",
         data: $form.serialize(),
-      });
-
+      })
+        .then(function (newTweet) {
+          console.log(JSON.stringify(newTweet));
+          renderTweets(newTweet);
+        })
     }
   });
 
@@ -50,7 +58,9 @@ $(document).ready(function () {
     $.ajax(tweetsPage, { method: 'GET' })
       .then(function (tweets) {
         console.log('Success: ', tweets);
-        renderTweets(tweets);
+        for (let tweet of tweets) {
+          renderTweets(tweet);
+        }
       });
   };
 
