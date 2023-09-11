@@ -36,11 +36,17 @@ $(document).ready(function () {
     let $tweetText = $("#tweet-text").val();
     //stop default submit from refreshing the page
     event.preventDefault();
+    const $errorMessage = $("#error-message");
+    const $errorText = $(".error-text");
+    // $errorMessage.hide();
     if ($tweetText === "" || $tweetText === null) {
-      alert("Invalid Entry!");
+      $errorText.text("Invalid Entry!"); // Set error message text
+      $errorMessage.slideDown();
     } else if ($tweetText.length > 140) {
-      alert("Tweet Exceeds limit of 140 characters.");
+      $errorText.text("Tweet Exceeds limit of 140 characters.");
+      $errorMessage.slideDown();
     } else {
+      $errorMessage.slideUp();
       $.ajax({
         url: "/tweets",
         method: "POST",
@@ -48,7 +54,7 @@ $(document).ready(function () {
       })
         .then(function (newTweet) {
           console.log(JSON.stringify(newTweet));
-          renderTweets(newTweet);
+          // renderTweets(newTweet);
         })
     }
   });

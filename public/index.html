@@ -29,7 +29,9 @@
   <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
 
   <!-- timeago JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Awesome Font Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -61,6 +63,11 @@
   <!-- Page-specific (main) content here -->
   <main class="container" id="tweets-container">
     <section class="new-tweet">
+      <div id="error-message" class="error-message" style="display: none;">
+        <i class="fa-solid fa-triangle-exclamation" style="color: #ff0000;"></i>
+        <span class="error-text"></span>
+        <i class="fa-solid fa-triangle-exclamation" style="color: #ff0000;"></i>
+      </div>
       <h2>Compose Tweet</h2>
       <form id="tweet-form" action="/tweets" method="POST">
         <label for="tweet-text">What are you humming about?</label>
