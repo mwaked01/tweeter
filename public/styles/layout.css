@@ -28,7 +28,7 @@ main {
   padding: 0 1.5em; /* Add padding on the right and left */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
 }
 
