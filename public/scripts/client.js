@@ -1,15 +1,15 @@
-$(document).ready(function () {
-  const renderTweets = function (tweet) {
+$(document).ready(function() {
+  const renderTweets = function(tweet) {
     $('#tweets-container').prepend(createTweetElement(tweet));
   };
 
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-  const createTweetElement = function (tweet) {
+  const createTweetElement = function(tweet) {
     const safeHTML = `<p>${escape(tweet['content'].text)}</p>`;
     const $tweet = $(`<article class="tweet">
   <header>
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
   const $form = $('#tweet-form');
 
-  $form.submit(function (event) {
+  $form.submit(function(event) {
 
     let $tweetText = $("#tweet-text").val();
     
@@ -56,21 +56,18 @@ $(document).ready(function () {
         method: "POST",
         data: $form.serialize(),
       })
-        .then(function (newTweet) {
+        .then(function(newTweet) {
           $("#tweets-container").empty();
           loadTweets();
-          // console.log(JSON.stringify(newTweet));
-          // renderTweets(newTweet);
-          
-        })
+        });
         
     }
   });
 
-  const loadTweets = function () {
+  const loadTweets = function() {
     const tweetsPage = 'http://localhost:8080/tweets';
     $.ajax(tweetsPage, { method: 'GET' })
-      .then(function (tweets) {
+      .then(function(tweets) {
         console.log('Success: ', tweets);
         for (let tweet of tweets) {
           renderTweets(tweet);
