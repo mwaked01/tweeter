@@ -1,15 +1,15 @@
-$(document).ready(function() {
-  const renderTweets = function(tweet) {
+$(document).ready(function () {
+  const renderTweets = function (tweet) {
     $('#tweets-container').prepend(createTweetElement(tweet));
   };
 
-  const escape = function(str) {
+  const escape = function (str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-  const createTweetElement = function(tweet) {
+  const createTweetElement = function (tweet) {
     const safeHTML = `<p>${escape(tweet['content'].text)}</p>`;
     const $tweet = $(`<article class="tweet">
   <header>
@@ -32,13 +32,10 @@ $(document).ready(function() {
 
   const $form = $('#tweet-form');
 
-  $form.submit(function(event) {
-
+  $form.submit(function (event) {
+    // console.log(this);
     let $tweetText = $("#tweet-text").val();
-    
-    //stop default submit from refreshing the page
     event.preventDefault();
-
     const $errorMessage = $("#error-message");
     const $errorText = $(".error-text");
 
@@ -49,26 +46,31 @@ $(document).ready(function() {
       $errorText.text("Tweet Exceeds limit of 140 characters.");
       $errorMessage.slideDown();
     } else {
-      
+
       $errorMessage.slideUp();
       $.ajax({
         url: "/tweets",
         method: "POST",
         data: $form.serialize(),
       })
-        .then(function(newTweet) {
+        .then(function (newTweet) {
           $("#tweets-container").empty();
           loadTweets();
+          $("#tweet-text").val('');
+          $(".counter").val(140);
+        })
+        .catch((err) => {
+          console.error(err);
         });
-        
+
     }
   });
 
-  const loadTweets = function() {
-    const tweetsPage = 'http://localhost:8080/tweets';
+  const loadTweets = function () {
+    const tweetsPage = '/tweets';
     $.ajax(tweetsPage, { method: 'GET' })
-      .then(function(tweets) {
-        console.log('Success: ', tweets);
+      .then(function (tweets) {
+        // console.log('Success: ', tweets);
         for (let tweet of tweets) {
           renderTweets(tweet);
         }
